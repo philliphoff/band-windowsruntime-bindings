@@ -1,0 +1,19 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Microsoft.Band.WindowsRuntime.Sample/Release
+/Microsoft.Band.WindowsRuntime.Sample/Generated Files
+/Microsoft.Band.WindowsRuntime.Sample/Debug
+/Microsoft.Band.WindowsRuntime.Sample/Microsoft.Band.WindowsRuntime.Sample.vcxproj.user
+/Microsoft.Band.WindowsRuntime.VC.opendb
+/Microsoft.Band.WindowsRuntime.sdf
+/Microsoft.Band.WindowsRuntime.NuGet/project.lock.json
+/Microsoft.Band.WindowsRuntime.NuGet/obj/Debug
+/Microsoft.Band.WindowsRuntime.NuGet/bin/Debug
+/Debug/Microsoft.Band.WindowsRuntime.Sample
+/Microsoft.Band.WindowsRuntime/obj
+/Microsoft.Band.WindowsRuntime/bin/Debug
+/Microsoft.Band.WindowsRuntime/project.lock.json
+/ipch/MICROSOFT.BAND.WINDOWSRUNTIME.SAMPLE-d11b676e

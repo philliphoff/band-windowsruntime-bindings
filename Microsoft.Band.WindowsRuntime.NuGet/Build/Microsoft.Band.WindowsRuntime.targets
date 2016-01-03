@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <NuGetPath>$(MSBuildThisFileDirectory)..\..\</NuGetPath>
+    <MicrosoftBandSdkNuGetPath>$(NuGetPath)Microsoft.Band\</MicrosoftBandSdkNuGetPath>
+    <MicrosoftBandSdkLibraryPath>$(MicrosoftBandSdkNuGetPath)lib\netcore451\</MicrosoftBandSdkLibraryPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(MicrosoftBandSdkLibraryPath)Microsoft.Band.dll">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="$(MicrosoftBandSdkLibraryPath)Microsoft.Band.Store.dll">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="$(MicrosoftBandSdkLibraryPath)Microsoft.Band.Store.pri">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="$(MicrosoftBandSdkLibraryPath)Microsoft.Band.Windows.dll">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="$(MicrosoftBandSdkLibraryPath)Microsoft.Band.Windows.pri">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="$(NuGetPath)lib\native\Microsoft.Band.WindowsRuntime.winmd">
+      <IsWinMDFile>true</IsWinMDFile>
+    </Reference>
+  </ItemGroup>
+</Project>

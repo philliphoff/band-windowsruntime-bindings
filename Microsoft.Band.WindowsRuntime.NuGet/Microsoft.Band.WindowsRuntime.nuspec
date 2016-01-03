@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.Band.WindowsRuntime</id>
+    <version>1.0.0</version>
+    <title>Windows Runtime Bindings for the Microsoft Band SDK</title>
+    <authors>Phillip Hoff</authors>
+    <owners>Phillip Hoff</owners>
+    <licenseUrl>https://raw.githubusercontent.com/philliphoff/band-windowsruntime-binding/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/philliphoff/band-windowsruntime-bindings</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>
+      Provides Windows Runtime bindings for the Microsoft Band SDK, enabling use of the SDK from native (i.e. C++) Universal Windows 10 applications.
+    </description>
+    <summary>
+      Provides Windows Runtime bindings for the Microsoft Band SDK, enabling use of the SDK from native (i.e. C++) Universal Windows 10 applications.
+    </summary>
+    <releaseNotes>
+      This is the initial release.
+    </releaseNotes>
+    <copyright>2016 (c) Phillip Hoff</copyright>
+    <tags>Microsoft Band WinRT</tags>
+  </metadata>
+  <files>
+    <file src="Build\Microsoft.Band.WindowsRuntime.targets" target="build\native" />
+    <file src="Content\Package.appxmanifest.transform" target="content\native" />
+    <file src="..\Microsoft.Band.WindowsRuntime\bin\$Configuration$\Microsoft.Band.WindowsRuntime.winmd" target="lib\native" />
+    <file src="Tools\Init.ps1" target="tools" />
+  </files>
+</package>
