@@ -131,6 +131,8 @@
     <Compile Include="Sensors\IBandSensorReading.cs" />
     <Compile Include="Sensors\BandAccelerometerSensorReadingEventArgs.cs" />
     <Compile Include="Sensors\BandSensorBase.cs" />
+    <Compile Include="Tiles\BandTile.cs" />
+    <Compile Include="Tiles\IBandTileManager.cs" />
     <Compile Include="UserConsent.cs" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

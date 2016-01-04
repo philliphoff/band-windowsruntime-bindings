@@ -1,6 +1,7 @@
 ﻿using Microsoft.Band.WindowsRuntime.Notifications;
 using Microsoft.Band.WindowsRuntime.Personalization;
 using Microsoft.Band.WindowsRuntime.Sensors;
+using Microsoft.Band.WindowsRuntime.Tiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,12 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace Microsoft.Band.WindowsRuntime
 {
-    internal sealed class BandClient : IBandClient, IBandNotificationManager, IBandPersonalizationManager, IBandSensorManager
+    internal sealed class BandClient 
+        : IBandClient, 
+          IBandNotificationManager, 
+          IBandPersonalizationManager, 
+          IBandSensorManager,
+          IBandTileManager
     {
         private readonly Band.IBandClient bandClient;
 
@@ -47,6 +53,14 @@ namespace Microsoft.Band.WindowsRuntime
         }
 
         public IBandSensorManager SensorManager
+        {
+            get
+            {
+                return this;
+            }
+        }
+
+        public IBandTileManager TileManager
         {
             get
             {
@@ -152,15 +166,7 @@ namespace Microsoft.Band.WindowsRuntime
                 {
                     var bandTheme = await this.bandClient.PersonalizationManager.GetThemeAsync(cancellationToken);
 
-                    return new BandTheme
-                    {
-                        Base            = bandTheme.Base.ToColor(),
-                        HighContrast    = bandTheme.HighContrast.ToColor(),
-                        Highlight       = bandTheme.Highlight.ToColor(),
-                        Lowlight        = bandTheme.Lowlight.ToColor(),
-                        Muted           = bandTheme.Muted.ToColor(),
-                        SecondaryText   = bandTheme.SecondaryText.ToColor()
-                    };
+                    return BandTheme.FromBandTheme(bandTheme);
                 });
         }
 
@@ -177,21 +183,7 @@ namespace Microsoft.Band.WindowsRuntime
 
         IAsyncAction IBandPersonalizationManager.SetThemeAsync(BandTheme theme)
         {
-            return AsyncInfo.Run(
-                async cancellationToken =>
-                {
-                    var bandTheme = new Band.BandTheme
-                    {
-                        Base            = theme.Base.ToBandColor(),
-                        HighContrast    = theme.HighContrast.ToBandColor(),
-                        Highlight       = theme.Highlight.ToBandColor(),
-                        Lowlight        = theme.Lowlight.ToBandColor(),
-                        Muted           = theme.Muted.ToBandColor(),
-                        SecondaryText   = theme.SecondaryText.ToBandColor()
-                    };
-
-                    await this.bandClient.PersonalizationManager.SetThemeAsync(bandTheme, cancellationToken);
-                });
+            return AsyncInfo.Run(cancellationToken => this.bandClient.PersonalizationManager.SetThemeAsync(BandTheme.ToBandTheme(theme), cancellationToken));
         }
 
         #endregion
@@ -206,6 +198,72 @@ namespace Microsoft.Band.WindowsRuntime
             {
                 return this.accelerometer.Value;
             }
+        }
+
+        #endregion
+
+        #region IBandTileManager Members
+
+        IAsyncOperation<bool> IBandTileManager.AddTileAsync(BandTile tile)
+        {
+            return AsyncInfo.Run(
+                cancellationToken =>
+                {
+                    var bandTile = new Band.Tiles.BandTile(tile.TileId)
+                    {
+                        IsBadgingEnabled = tile.IsBadgingEnabled,
+                        IsScreenTimeoutDisabled = tile.IsScreenTimeoutDisabled,
+                        Name = tile.Name,
+                        SmallIcon = tile.SmallIcon != null ? tile.SmallIcon.ToBandIcon() : null,
+                        Theme = BandTheme.ToBandTheme(tile.Theme),
+                        TileIcon = tile.TileIcon != null ? tile.TileIcon.ToBandIcon() : null
+                        
+                    };
+
+                    foreach (var icon in tile.AdditionalIcons)
+                    {
+                        bandTile.AdditionalIcons.Add(icon.ToBandIcon());
+                    }
+
+                    return this.bandClient.TileManager.AddTileAsync(bandTile, cancellationToken);
+                });
+        }
+
+        IAsyncOperation<int> IBandTileManager.GetRemainingTileCapacityAsync()
+        {
+            return AsyncInfo.Run(cancellationToken => this.bandClient.TileManager.GetRemainingTileCapacityAsync(cancellationToken));
+        }
+
+        IAsyncOperation<IEnumerable<BandTile>> IBandTileManager.GetTilesAsync()
+        {
+            return AsyncInfo.Run<IEnumerable<BandTile>>(
+                async cancellationToken =>
+                {
+                    var bandTiles = await this.bandClient.TileManager.GetTilesAsync(cancellationToken);
+
+                    return bandTiles.Select(FromBandTile).ToArray();
+                });
+        }
+
+        private BandTile FromBandTile(Band.Tiles.BandTile tile)
+        {
+            var bandTile = new BandTile(tile.TileId)
+            {
+                IsBadgingEnabled = tile.IsBadgingEnabled,
+                IsScreenTimeoutDisabled = tile.IsScreenTimeoutDisabled,
+                Name = tile.Name,
+                SmallIcon = tile.SmallIcon != null ? tile.SmallIcon.ToWriteableBitmap() : null,
+                Theme = BandTheme.FromBandTheme(tile.Theme),
+                TileIcon = tile.TileIcon != null ? tile.TileIcon.ToWriteableBitmap() : null
+
+            };
+
+            foreach (var icon in tile.AdditionalIcons)
+            {
+                bandTile.AdditionalIcons.Add(icon.ToWriteableBitmap());
+            }
+
+            return bandTile;
         }
 
         #endregion
