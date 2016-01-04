@@ -19,5 +19,7 @@ namespace Microsoft_Band_WindowsRuntime_Sample
 
 	private:
 		void Button_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void OnReadingChanged(Platform::Object^ sender, Microsoft::Band::WindowsRuntime::Sensors::BandAccelerometerSensorReadingEventArgs ^ e);
+
 	};
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Band.WindowsRuntime.Notifications;
 using Microsoft.Band.WindowsRuntime.Personalization;
+using Microsoft.Band.WindowsRuntime.Sensors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace Microsoft.Band.WindowsRuntime
 {
-    internal sealed class BandClient : IBandClient, IBandNotificationManager, IBandPersonalizationManager
+    internal sealed class BandClient : IBandClient, IBandNotificationManager, IBandPersonalizationManager, IBandSensorManager
     {
         private readonly Band.IBandClient bandClient;
 
@@ -23,6 +24,8 @@ namespace Microsoft.Band.WindowsRuntime
             }
 
             this.bandClient = bandClient;
+
+            this.accelerometer = new Lazy<BandAccelerometerSensor>(() => new BandAccelerometerSensor(this.bandClient.SensorManager.Accelerometer));
         }
 
         #region IBandClient Members
@@ -36,6 +39,14 @@ namespace Microsoft.Band.WindowsRuntime
         }
 
         public IBandPersonalizationManager PersonalizationManager
+        {
+            get
+            {
+                return this;
+            }
+        }
+
+        public IBandSensorManager SensorManager
         {
             get
             {
@@ -181,6 +192,20 @@ namespace Microsoft.Band.WindowsRuntime
 
                     await this.bandClient.PersonalizationManager.SetThemeAsync(bandTheme, cancellationToken);
                 });
+        }
+
+        #endregion
+
+        #region IBandSensorManager Members
+
+        private readonly Lazy<BandAccelerometerSensor> accelerometer;
+
+        IBandAccelerometerSensor IBandSensorManager.Accelerometer
+        {
+            get
+            {
+                return this.accelerometer.Value;
+            }
         }
 
         #endregion

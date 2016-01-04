@@ -28,6 +28,10 @@ MainPage::MainPage()
 	InitializeComponent();
 }
 
+void Microsoft_Band_WindowsRuntime_Sample::MainPage::OnReadingChanged(Object^ sender, Microsoft::Band::WindowsRuntime::Sensors::BandAccelerometerSensorReadingEventArgs ^ e)
+{
+
+}
 
 void Microsoft_Band_WindowsRuntime_Sample::MainPage::Button_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
@@ -51,13 +55,16 @@ void Microsoft_Band_WindowsRuntime_Sample::MainPage::Button_Click(Platform::Obje
 
 			clientTask.then([this](IBandClient^ client) 
 			{
-				auto firmwareVersionOperation = client->GetFirmwareVersionAsync();
+				//auto firmwareVersionOperation = client->GetFirmwareVersionAsync();
 
-				auto firmwareVersionTask = create_task(firmwareVersionOperation);
+				//auto firmwareVersionTask = create_task(firmwareVersionOperation);
 
-				firmwareVersionTask.then([this](String^ firmwareVersion)
-				{
-				});
+				//firmwareVersionTask.then([this](String^ firmwareVersion)
+				//{
+				//});
+
+				client->SensorManager->Accelerometer->ReadingChanged += ref new Windows::Foundation::EventHandler<Microsoft::Band::WindowsRuntime::Sensors::BandAccelerometerSensorReadingEventArgs ^>(this, &Microsoft_Band_WindowsRuntime_Sample::MainPage::OnReadingChanged);
+				client->SensorManager->Accelerometer->StartReadingsAsync();
 			});
 		}
 	});

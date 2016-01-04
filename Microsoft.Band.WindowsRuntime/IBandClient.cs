@@ -1,5 +1,6 @@
 ﻿using Microsoft.Band.WindowsRuntime.Notifications;
 using Microsoft.Band.WindowsRuntime.Personalization;
+using Microsoft.Band.WindowsRuntime.Sensors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace Microsoft.Band.WindowsRuntime
         IBandNotificationManager NotificationManager { get; }
 
         IBandPersonalizationManager PersonalizationManager { get; }
+
+        IBandSensorManager SensorManager { get; }
 
         IAsyncOperation<string> GetFirmwareVersionAsync();
 
