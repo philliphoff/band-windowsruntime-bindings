@@ -1,4 +1,5 @@
 ﻿using Microsoft.Band.WindowsRuntime.Notifications;
+using Microsoft.Band.WindowsRuntime.Personalization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace Microsoft.Band.WindowsRuntime
     public interface IBandClient : IDisposable
     {
         IBandNotificationManager NotificationManager { get; }
+
+        IBandPersonalizationManager PersonalizationManager { get; }
 
         IAsyncOperation<string> GetFirmwareVersionAsync();
 

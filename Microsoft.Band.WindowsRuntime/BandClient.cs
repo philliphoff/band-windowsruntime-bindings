@@ -1,4 +1,5 @@
 ﻿using Microsoft.Band.WindowsRuntime.Notifications;
+using Microsoft.Band.WindowsRuntime.Personalization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,10 +7,11 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace Microsoft.Band.WindowsRuntime
 {
-    internal sealed class BandClient : IBandClient, IBandNotificationManager
+    internal sealed class BandClient : IBandClient, IBandNotificationManager, IBandPersonalizationManager
     {
         private readonly Band.IBandClient bandClient;
 
@@ -26,6 +28,14 @@ namespace Microsoft.Band.WindowsRuntime
         #region IBandClient Members
 
         public IBandNotificationManager NotificationManager
+        {
+            get
+            {
+                return this;
+            }
+        }
+
+        public IBandPersonalizationManager PersonalizationManager
         {
             get
             {
@@ -107,6 +117,70 @@ namespace Microsoft.Band.WindowsRuntime
 
                     throw new ArgumentOutOfRangeException("vibrationType");
             }
+        }
+
+        #endregion
+
+        #region IBandPersonalizationManager Members
+
+        IAsyncOperation<WriteableBitmap> IBandPersonalizationManager.GetMeTileImageAsync()
+        {
+            return AsyncInfo.Run(
+                async cancellationToken =>
+                {
+                    var bandImage = await this.bandClient.PersonalizationManager.GetMeTileImageAsync(cancellationToken);
+
+                    return bandImage.ToWriteableBitmap();
+                });
+        }
+
+        IAsyncOperation<BandTheme> IBandPersonalizationManager.GetThemeAsync()
+        {
+            return AsyncInfo.Run(
+                async cancellationToken =>
+                {
+                    var bandTheme = await this.bandClient.PersonalizationManager.GetThemeAsync(cancellationToken);
+
+                    return new BandTheme
+                    {
+                        Base            = bandTheme.Base.ToColor(),
+                        HighContrast    = bandTheme.HighContrast.ToColor(),
+                        Highlight       = bandTheme.Highlight.ToColor(),
+                        Lowlight        = bandTheme.Lowlight.ToColor(),
+                        Muted           = bandTheme.Muted.ToColor(),
+                        SecondaryText   = bandTheme.SecondaryText.ToColor()
+                    };
+                });
+        }
+
+        IAsyncAction IBandPersonalizationManager.SetMeTileImageAsync(WriteableBitmap image)
+        {
+            return AsyncInfo.Run(
+                async cancellationToken =>
+                {
+                    var bandImage = image.ToBandImage();
+
+                    await this.bandClient.PersonalizationManager.SetMeTileImageAsync(bandImage, cancellationToken);
+                });
+        }
+
+        IAsyncAction IBandPersonalizationManager.SetThemeAsync(BandTheme theme)
+        {
+            return AsyncInfo.Run(
+                async cancellationToken =>
+                {
+                    var bandTheme = new Band.BandTheme
+                    {
+                        Base            = theme.Base.ToBandColor(),
+                        HighContrast    = theme.HighContrast.ToBandColor(),
+                        Highlight       = theme.Highlight.ToBandColor(),
+                        Lowlight        = theme.Lowlight.ToBandColor(),
+                        Muted           = theme.Muted.ToBandColor(),
+                        SecondaryText   = theme.SecondaryText.ToBandColor()
+                    };
+
+                    await this.bandClient.PersonalizationManager.SetThemeAsync(bandTheme, cancellationToken);
+                });
         }
 
         #endregion

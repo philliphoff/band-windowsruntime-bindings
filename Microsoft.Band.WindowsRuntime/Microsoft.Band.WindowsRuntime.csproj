@@ -112,12 +112,14 @@
     <Compile Include="BandClientManager.cs" />
     <Compile Include="BandConnectionType.cs" />
     <Compile Include="BandInfo.cs" />
+    <Compile Include="BandTheme.cs" />
     <Compile Include="IBandClient.cs" />
     <Compile Include="IBandClientManager.cs" />
     <Compile Include="IBandInfo.cs" />
     <Compile Include="Notifications\IBandNotificationManager.cs" />
     <Compile Include="Notifications\MessageFlags.cs" />
     <Compile Include="Notifications\VibrationType.cs" />
+    <Compile Include="Personalization\IBandPersonalizationManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
