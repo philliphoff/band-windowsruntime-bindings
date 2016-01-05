@@ -123,9 +123,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sensors\BandAccelerometerReading.cs" />
     <Compile Include="Sensors\BandAccelerometerSensor.cs" />
+    <Compile Include="Sensors\BandAltimeterReading.cs" />
+    <Compile Include="Sensors\BandAltimeterSensor.cs" />
+    <Compile Include="Sensors\BandAltimeterSensorReadingEventArgs.cs" />
     <Compile Include="Sensors\BandSensorReadingBase.cs" />
     <Compile Include="Sensors\IBandAccelerometerReading.cs" />
     <Compile Include="Sensors\IBandAccelerometerSensor.cs" />
+    <Compile Include="Sensors\IBandAltimeterSensor.cs" />
+    <Compile Include="Sensors\IBandAltimeterReading.cs" />
     <Compile Include="Sensors\IBandSensor.cs" />
     <Compile Include="Sensors\IBandSensorManager.cs" />
     <Compile Include="Sensors\IBandSensorReading.cs" />

@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Band.WindowsRuntime.Sensors
 {
-    public interface IBandSensorManager
+    public interface IBandAltimeterSensor
     {
-        IBandAccelerometerSensor Accelerometer { get; }
-
-        IBandAltimeterSensor Altimeter { get; }
     }
 }

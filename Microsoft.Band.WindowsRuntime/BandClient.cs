@@ -32,6 +32,7 @@ namespace Microsoft.Band.WindowsRuntime
             this.bandClient = bandClient;
 
             this.accelerometer = new Lazy<BandAccelerometerSensor>(() => new BandAccelerometerSensor(this.bandClient.SensorManager.Accelerometer));
+            this.altimeter = new Lazy<BandAltimeterSensor>(() => new BandAltimeterSensor(this.bandClient.SensorManager.Altimeter));
         }
 
         #region IBandClient Members
@@ -191,12 +192,21 @@ namespace Microsoft.Band.WindowsRuntime
         #region IBandSensorManager Members
 
         private readonly Lazy<BandAccelerometerSensor> accelerometer;
+        private readonly Lazy<BandAltimeterSensor> altimeter;
 
         IBandAccelerometerSensor IBandSensorManager.Accelerometer
         {
             get
             {
                 return this.accelerometer.Value;
+            }
+        }
+
+        IBandAltimeterSensor IBandSensorManager.Altimeter
+        {
+            get
+            {
+                return this.altimeter.Value;
             }
         }
 
