@@ -126,11 +126,16 @@
     <Compile Include="Sensors\BandAltimeterReading.cs" />
     <Compile Include="Sensors\BandAltimeterSensor.cs" />
     <Compile Include="Sensors\BandAltimeterSensorReadingEventArgs.cs" />
+    <Compile Include="Sensors\BandAmbientLightReading.cs" />
+    <Compile Include="Sensors\BandAmbientLightSensor.cs" />
+    <Compile Include="Sensors\BandAmbientLightSensorReadingEventArgs.cs" />
     <Compile Include="Sensors\BandSensorReadingBase.cs" />
     <Compile Include="Sensors\IBandAccelerometerReading.cs" />
     <Compile Include="Sensors\IBandAccelerometerSensor.cs" />
     <Compile Include="Sensors\IBandAltimeterSensor.cs" />
     <Compile Include="Sensors\IBandAltimeterReading.cs" />
+    <Compile Include="Sensors\IBandAmbientLightReading.cs" />
+    <Compile Include="Sensors\IBandAmbientLightSensor.cs" />
     <Compile Include="Sensors\IBandSensor.cs" />
     <Compile Include="Sensors\IBandSensorManager.cs" />
     <Compile Include="Sensors\IBandSensorReading.cs" />

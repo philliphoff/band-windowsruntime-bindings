@@ -11,5 +11,7 @@ namespace Microsoft.Band.WindowsRuntime.Sensors
         IBandAccelerometerSensor Accelerometer { get; }
 
         IBandAltimeterSensor Altimeter { get; }
+
+        IBandAmbientLightSensor AmbientLight { get; }
     }
 }

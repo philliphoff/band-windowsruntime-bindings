@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Band.WindowsRuntime.Sensors
 {
-    public interface IBandAltimeterSensor
+    public interface IBandAltimeterSensor : IBandSensor
     {
+        event EventHandler<BandAltimeterSensorReadingEventArgs> ReadingChanged;
     }
 }

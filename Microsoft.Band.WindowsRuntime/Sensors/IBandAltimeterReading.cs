@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Band.WindowsRuntime.Sensors
 {
-    public interface IBandAltimeterReading
+    public interface IBandAltimeterReading : IBandSensorReading
     {
         long FlightsAscended { get; }
 
