@@ -9,13 +9,13 @@ using Windows.Foundation;
 
 namespace Microsoft.Band.WindowsRuntime.Sensors
 {
-    internal abstract class BandSensorBase<T> : IBandSensor where T : Band.Sensors.IBandSensorReading
+    internal abstract class BandSensorBase<TSensorReading, TSensorReadingEventArgs> : IBandSensor where TSensorReading : Band.Sensors.IBandSensorReading
     {
-        private readonly Band.Sensors.IBandSensor<T> sensor;
+        private readonly Band.Sensors.IBandSensor<TSensorReading> sensor;
         private readonly SemaphoreSlim readingLock = new SemaphoreSlim(1, 1);
         private bool isSubscribed;
 
-        public BandSensorBase(Band.Sensors.IBandSensor<T> sensor)
+        public BandSensorBase(Band.Sensors.IBandSensor<TSensorReading> sensor)
         {
             if (sensor == null)
             {
@@ -119,11 +119,18 @@ namespace Microsoft.Band.WindowsRuntime.Sensors
 
         #endregion
 
-        protected abstract void NotifySensorReadingChanged(Band.Sensors.BandSensorReadingEventArgs<T> e);
+        public event EventHandler<TSensorReadingEventArgs> ReadingChanged;
 
-        private void OnSensorReadingChanged(object sender, Band.Sensors.BandSensorReadingEventArgs<T> e)
+        protected abstract TSensorReadingEventArgs CreateEventArgs(TSensorReading reading);
+
+        private void OnSensorReadingChanged(object sender, Band.Sensors.BandSensorReadingEventArgs<TSensorReading> e)
         {
-            NotifySensorReadingChanged(e);
+            var handler = ReadingChanged;
+
+            if (handler != null)
+            {
+                handler(this, CreateEventArgs(e.SensorReading));
+            }
         }
 
         private UserConsent ToUserConsent(Band.UserConsent userConsent)

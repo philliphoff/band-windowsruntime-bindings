@@ -7,23 +7,16 @@ using Microsoft.Band.Sensors;
 
 namespace Microsoft.Band.WindowsRuntime.Sensors
 {
-    internal sealed class BandAccelerometerSensor : BandSensorBase<Band.Sensors.IBandAccelerometerReading>, IBandAccelerometerSensor
+    internal sealed class BandAccelerometerSensor : BandSensorBase<Band.Sensors.IBandAccelerometerReading, BandAccelerometerSensorReadingEventArgs>, IBandAccelerometerSensor
     {
         public BandAccelerometerSensor(Band.Sensors.IBandSensor<Band.Sensors.IBandAccelerometerReading> sensor)
             : base(sensor)
         {
         }
 
-        public event EventHandler<BandAccelerometerSensorReadingEventArgs> ReadingChanged;
-
-        protected override void NotifySensorReadingChanged(BandSensorReadingEventArgs<Band.Sensors.IBandAccelerometerReading> e)
+        protected override BandAccelerometerSensorReadingEventArgs CreateEventArgs(Band.Sensors.IBandAccelerometerReading reading)
         {
-            var handler = ReadingChanged;
-
-            if (handler != null)
-            {
-                handler(this, new BandAccelerometerSensorReadingEventArgs(new BandAccelerometerReading(e.SensorReading)));
-            }
+            return new BandAccelerometerSensorReadingEventArgs(new BandAccelerometerReading(reading));
         }
     }
 }
