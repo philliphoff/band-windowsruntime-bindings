@@ -6,7 +6,7 @@
     <title>Windows Runtime Bindings for the Microsoft Band SDK</title>
     <authors>Phillip Hoff</authors>
     <owners>Phillip Hoff</owners>
-    <licenseUrl>https://raw.githubusercontent.com/philliphoff/band-windowsruntime-binding/master/LICENSE.md</licenseUrl>
+    <licenseUrl>https://raw.githubusercontent.com/philliphoff/band-windowsruntime-bindings/master/LICENSE.md</licenseUrl>
     <projectUrl>https://github.com/philliphoff/band-windowsruntime-bindings</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>

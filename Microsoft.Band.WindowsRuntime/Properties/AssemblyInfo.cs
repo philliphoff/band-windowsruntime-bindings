@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Microsoft.Band.WindowsRuntime")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Windows Runtime Bindings for the Microsoft Band SDK")]
+[assembly: AssemblyDescription("Provides Windows Runtime bindings for the Microsoft Band SDK, enabling use of the SDK from native (i.e. C++) Universal Windows 10 applications.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Microsoft.Band.WindowsRuntime")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCopyright("Copyright © 2016 Phillip Hoff")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
