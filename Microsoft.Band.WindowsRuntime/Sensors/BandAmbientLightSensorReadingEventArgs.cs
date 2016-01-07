@@ -8,8 +8,6 @@ namespace Microsoft.Band.WindowsRuntime.Sensors
 {
     public sealed class BandAmbientLightSensorReadingEventArgs
     {
-        private readonly IBandAmbientLightReading reading;
-
         public BandAmbientLightSensorReadingEventArgs(IBandAmbientLightReading sensorReading)
         {
             if (sensorReading == null)
