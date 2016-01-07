@@ -37,6 +37,7 @@ namespace Microsoft.Band.WindowsRuntime
             this.barometer = new Lazy<BandBarometerSensor>(() => new BandBarometerSensor(this.bandClient.SensorManager.Barometer));
             this.calories = new Lazy<BandCaloriesSensor>(() => new BandCaloriesSensor(this.bandClient.SensorManager.Calories));
             this.contact = new Lazy<BandContactSensor>(() => new BandContactSensor(this.bandClient.SensorManager.Contact));
+            this.distance = new Lazy<BandDistanceSensor>(() => new BandDistanceSensor(this.bandClient.SensorManager.Distance));
         }
 
         #region IBandClient Members
@@ -201,6 +202,7 @@ namespace Microsoft.Band.WindowsRuntime
         private readonly Lazy<BandBarometerSensor> barometer;
         private readonly Lazy<BandCaloriesSensor> calories;
         private readonly Lazy<BandContactSensor> contact;
+        private readonly Lazy<BandDistanceSensor> distance;
 
         IBandAccelerometerSensor IBandSensorManager.Accelerometer
         {
@@ -247,6 +249,14 @@ namespace Microsoft.Band.WindowsRuntime
             get
             {
                 return this.contact.Value;
+            }
+        }
+
+        IBandDistanceSensor IBandSensorManager.Distance
+        {
+            get
+            {
+                return this.distance.Value;
             }
         }
 
