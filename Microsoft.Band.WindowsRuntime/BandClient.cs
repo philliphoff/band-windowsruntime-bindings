@@ -39,6 +39,7 @@ namespace Microsoft.Band.WindowsRuntime
             this.contact = new Lazy<BandContactSensor>(() => new BandContactSensor(this.bandClient.SensorManager.Contact));
             this.distance = new Lazy<BandDistanceSensor>(() => new BandDistanceSensor(this.bandClient.SensorManager.Distance));
             this.gsr = new Lazy<BandGsrSensor>(() => new BandGsrSensor(this.bandClient.SensorManager.Gsr));
+            this.gyroscope = new Lazy<BandGyroscopeSensor>(() => new BandGyroscopeSensor(this.bandClient.SensorManager.Gyroscope));
         }
 
         #region IBandClient Members
@@ -205,6 +206,7 @@ namespace Microsoft.Band.WindowsRuntime
         private readonly Lazy<BandContactSensor> contact;
         private readonly Lazy<BandDistanceSensor> distance;
         private readonly Lazy<BandGsrSensor> gsr;
+        private readonly Lazy<BandGyroscopeSensor> gyroscope;
 
         IBandAccelerometerSensor IBandSensorManager.Accelerometer
         {
@@ -267,6 +269,14 @@ namespace Microsoft.Band.WindowsRuntime
             get
             {
                 return this.gsr.Value;
+            }
+        }
+
+        IBandGyroscopeSensor IBandSensorManager.Gyroscope
+        {
+            get
+            {
+                return this.gyroscope.Value;
             }
         }
 

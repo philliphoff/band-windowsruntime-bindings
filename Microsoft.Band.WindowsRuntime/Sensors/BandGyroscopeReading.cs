@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Microsoft.Band.WindowsRuntime.Sensors
 {
-    internal class BandAccelerometerReading : BandSensorReadingBase, IBandAccelerometerReading
+    internal sealed class BandGyroscopeReading : BandAccelerometerReading, IBandGyroscopeReading
     {
-        private readonly Band.Sensors.IBandAccelerometerReading reading;
+        private readonly Band.Sensors.IBandGyroscopeReading reading;
 
-        public BandAccelerometerReading(Band.Sensors.IBandAccelerometerReading reading)
+        public BandGyroscopeReading(Band.Sensors.IBandGyroscopeReading reading)
             : base(reading)
         {
             if (reading == null)
@@ -21,28 +21,32 @@ namespace Microsoft.Band.WindowsRuntime.Sensors
             this.reading = reading;
         }
 
-        public double AccelerationX
+        #region IBandGyroscopeReading Members
+
+        public double AngularVelocityX
         {
             get
             {
-                return this.reading.AccelerationX;
+                return this.reading.AngularVelocityX;
             }
         }
 
-        public double AccelerationY
+        public double AngularVelocityY
         {
             get
             {
-                return this.reading.AccelerationY;
+                return this.reading.AngularVelocityY;
             }
         }
 
-        public double AccelerationZ
+        public double AngularVelocityZ
         {
             get
             {
-                return this.reading.AccelerationZ;
+                return this.reading.AngularVelocityZ;
             }
         }
+
+        #endregion
     }
 }
