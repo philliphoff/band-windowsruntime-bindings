@@ -21,5 +21,7 @@ namespace Microsoft.Band.WindowsRuntime.Sensors
         IBandContactSensor Contact { get; }
 
         IBandDistanceSensor Distance { get; }
+
+        IBandGsrSensor Gsr { get; }
     }
 }
