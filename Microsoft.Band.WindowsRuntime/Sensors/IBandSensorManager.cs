@@ -27,5 +27,7 @@ namespace Microsoft.Band.WindowsRuntime.Sensors
         IBandGyroscopeSensor Gyroscope { get; }
 
         IBandHeartRateSensor HeartRate { get; }
+
+        IBandPedometerSensor Pedometer { get; }
     }
 }

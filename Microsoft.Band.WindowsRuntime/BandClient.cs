@@ -41,6 +41,7 @@ namespace Microsoft.Band.WindowsRuntime
             this.gsr = new Lazy<BandGsrSensor>(() => new BandGsrSensor(this.bandClient.SensorManager.Gsr));
             this.gyroscope = new Lazy<BandGyroscopeSensor>(() => new BandGyroscopeSensor(this.bandClient.SensorManager.Gyroscope));
             this.heartRate = new Lazy<BandHeartRateSensor>(() => new BandHeartRateSensor(this.bandClient.SensorManager.HeartRate));
+            this.pedometer = new Lazy<BandPedometerSensor>(() => new BandPedometerSensor(this.bandClient.SensorManager.Pedometer));
         }
 
         #region IBandClient Members
@@ -209,6 +210,7 @@ namespace Microsoft.Band.WindowsRuntime
         private readonly Lazy<BandGsrSensor> gsr;
         private readonly Lazy<BandGyroscopeSensor> gyroscope;
         private readonly Lazy<BandHeartRateSensor> heartRate;
+        private readonly Lazy<BandPedometerSensor> pedometer;
 
         IBandAccelerometerSensor IBandSensorManager.Accelerometer
         {
@@ -287,6 +289,14 @@ namespace Microsoft.Band.WindowsRuntime
             get
             {
                 return this.heartRate.Value;
+            }
+        }
+
+        IBandPedometerSensor IBandSensorManager.Pedometer
+        {
+            get
+            {
+                return this.pedometer.Value;
             }
         }
 
