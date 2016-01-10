@@ -154,6 +154,9 @@
     <Compile Include="Sensors\BandPedometerReading.cs" />
     <Compile Include="Sensors\BandPedometerSensor.cs" />
     <Compile Include="Sensors\BandPedometerSensorReadingChangedEventArgs.cs" />
+    <Compile Include="Sensors\BandRRIntervalReading.cs" />
+    <Compile Include="Sensors\BandRRIntervalSensor.cs" />
+    <Compile Include="Sensors\BandRRIntervalSensorReadingChangedEventArgs.cs" />
     <Compile Include="Sensors\BandSensorReadingBase.cs" />
     <Compile Include="Sensors\HeartRateQuality.cs" />
     <Compile Include="Sensors\IBandAccelerometerReading.cs" />
@@ -178,6 +181,8 @@
     <Compile Include="Sensors\IBandHeartRateSensor.cs" />
     <Compile Include="Sensors\IBandPedometerReading.cs" />
     <Compile Include="Sensors\IBandPedometerSensor.cs" />
+    <Compile Include="Sensors\IBandRRIntervalReading.cs" />
+    <Compile Include="Sensors\IBandRRIntervalSensor.cs" />
     <Compile Include="Sensors\IBandSensor.cs" />
     <Compile Include="Sensors\IBandSensorManager.cs" />
     <Compile Include="Sensors\IBandSensorReading.cs" />
