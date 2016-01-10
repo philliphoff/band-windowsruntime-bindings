@@ -31,5 +31,7 @@ namespace Microsoft.Band.WindowsRuntime.Sensors
         IBandPedometerSensor Pedometer { get; }
 
         IBandRRIntervalSensor RRInterval { get; }
+
+        IBandSkinTemperatureSensor SkinTemperature { get; }
     }
 }
