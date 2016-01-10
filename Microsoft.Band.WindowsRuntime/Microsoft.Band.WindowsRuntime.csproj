@@ -161,6 +161,9 @@
     <Compile Include="Sensors\BandSkinTemperatureReading.cs" />
     <Compile Include="Sensors\BandSkinTemperatureSensor.cs" />
     <Compile Include="Sensors\BandSkinTemperatureSensorReadingChangedEventArgs.cs" />
+    <Compile Include="Sensors\BandUVReading.cs" />
+    <Compile Include="Sensors\BandUVSensor.cs" />
+    <Compile Include="Sensors\BandUVSensorReadingChangedEventArgs.cs" />
     <Compile Include="Sensors\HeartRateQuality.cs" />
     <Compile Include="Sensors\IBandAccelerometerReading.cs" />
     <Compile Include="Sensors\IBandAccelerometerSensor.cs" />
@@ -193,7 +196,10 @@
     <Compile Include="Sensors\BandSensorBase.cs" />
     <Compile Include="Sensors\IBandSkinTemperatureReading.cs" />
     <Compile Include="Sensors\IBandSkinTemperatureSensor.cs" />
+    <Compile Include="Sensors\IBandUVReading.cs" />
+    <Compile Include="Sensors\IBandUVSensor.cs" />
     <Compile Include="Sensors\MotionType.cs" />
+    <Compile Include="Sensors\UVIndexLevel.cs" />
     <Compile Include="Tiles\BandTile.cs" />
     <Compile Include="Tiles\IBandTileManager.cs" />
     <Compile Include="UserConsent.cs" />

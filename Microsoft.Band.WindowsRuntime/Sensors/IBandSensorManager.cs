@@ -33,5 +33,7 @@ namespace Microsoft.Band.WindowsRuntime.Sensors
         IBandRRIntervalSensor RRInterval { get; }
 
         IBandSkinTemperatureSensor SkinTemperature { get; }
+
+        IBandUVSensor UV { get; }
     }
 }

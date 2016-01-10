@@ -44,6 +44,7 @@ namespace Microsoft.Band.WindowsRuntime
             this.pedometer = new Lazy<BandPedometerSensor>(() => new BandPedometerSensor(this.bandClient.SensorManager.Pedometer));
             this.rrInterval = new Lazy<BandRRIntervalSensor>(() => new BandRRIntervalSensor(this.bandClient.SensorManager.RRInterval));
             this.skinTemperature = new Lazy<BandSkinTemperatureSensor>(() => new BandSkinTemperatureSensor(this.bandClient.SensorManager.SkinTemperature));
+            this.uv = new Lazy<BandUVSensor>(() => new BandUVSensor(this.bandClient.SensorManager.UV));
         }
 
         #region IBandClient Members
@@ -215,6 +216,7 @@ namespace Microsoft.Band.WindowsRuntime
         private readonly Lazy<BandPedometerSensor> pedometer;
         private readonly Lazy<BandRRIntervalSensor> rrInterval;
         private readonly Lazy<BandSkinTemperatureSensor> skinTemperature;
+        private readonly Lazy<BandUVSensor> uv;
 
         IBandAccelerometerSensor IBandSensorManager.Accelerometer
         {
@@ -317,6 +319,14 @@ namespace Microsoft.Band.WindowsRuntime
             get
             {
                 return this.skinTemperature.Value;
+            }
+        }
+
+        IBandUVSensor IBandSensorManager.UV
+        {
+            get
+            {
+                return this.uv.Value;
             }
         }
 
