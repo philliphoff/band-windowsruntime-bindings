@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Microsoft.Band.WindowsRuntime</id>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
     <title>Windows Runtime Bindings for the Microsoft Band SDK</title>
     <authors>Phillip Hoff</authors>
     <owners>Phillip Hoff</owners>
@@ -16,7 +16,7 @@
       Provides Windows Runtime bindings for the Microsoft Band SDK, enabling use of the SDK from native (i.e. C++) Universal Windows 10 applications.
     </summary>
     <releaseNotes>
-      Adds more bindings to more sensors.
+      Now contains bindings for all sensors.
     </releaseNotes>
     <copyright>2016 (c) Phillip Hoff</copyright>
     <tags>Microsoft Band WinRT</tags>
