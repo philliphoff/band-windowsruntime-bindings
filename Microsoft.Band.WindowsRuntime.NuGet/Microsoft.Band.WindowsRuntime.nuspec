@@ -24,7 +24,10 @@
   <files>
     <file src="Build\Microsoft.Band.WindowsRuntime.targets" target="build\native" />
     <file src="Content\Package.appxmanifest.transform" target="content\native" />
+    <file src="..\Microsoft.Band.WindowsRuntime\bin\$Configuration$\Microsoft.Band.WindowsRuntime.pri" target="lib\native" />
     <file src="..\Microsoft.Band.WindowsRuntime\bin\$Configuration$\Microsoft.Band.WindowsRuntime.winmd" target="lib\native" />
+    <file src="..\Microsoft.Band.WindowsRuntime\bin\$Configuration$\idl\x86\*" target="lib\native\idl\x86" />
+    <file src="..\Microsoft.Band.WindowsRuntime\bin\$Configuration$\idl\x64\*" target="lib\native\idl\x64" />
     <file src="Tools\Init.ps1" target="tools" />
   </files>
 </package>

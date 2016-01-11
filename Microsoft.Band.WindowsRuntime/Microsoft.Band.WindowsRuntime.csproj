@@ -215,4 +215,18 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <WindowsKitsRoot>$([MSBuild]::GetRegistryValueFromView('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Kits\Installed Roots', 'KitsRoot10', null, RegistryView.Registry32, RegistryView.Default))</WindowsKitsRoot>
+    <WindowsKitsRoot Condition="'$(WindowsKitsRoot)' == ''">$([MSBuild]::GetRegistryValueFromView('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Kits\Installed Roots', 'KitsRoot', null, RegistryView.Registry32, RegistryView.Default))</WindowsKitsRoot>
+    <WinmdIdlPathx86 Condition="'$(WinmdIdlPathx86)' == ''">$(WindowsKitsRoot)bin\x86\</WinmdIdlPathx86>
+    <WinmdIdlPathx64 Condition="'$(WinmdIdlPathx64)' == ''">$(WindowsKitsRoot)bin\x64\</WinmdIdlPathx64>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IdlOutDir>$(OutDir)idl/</IdlOutDir>
+  </PropertyGroup>
+  <Target Name="AfterBuild">
+    <MakeDir Directories="$(IdlOutDir)x86;$(IdlOutDir)x64" />
+    <Exec Command="&quot;$(WinmdIdlPathx86)winmdidl.exe&quot; /outdir:$(IdlOutDir)x86 $(OutDir)$(AssemblyName).winmd" />
+    <Exec Command="&quot;$(WinmdIdlPathx64)winmdidl.exe&quot; /outdir:$(IdlOutDir)x64 $(OutDir)$(AssemblyName).winmd" />
+  </Target>
 </Project>
